@@ -1,0 +1,392 @@
+// NAV BAR
+
+.sitetitle {
+  padding: 2rem;
+}
+
+// SPINE ITEM
+.spine {
+  width: 1px;
+  height: 70vh;
+  background-image: linear-gradient(to bottom, #ab9bee, #02021e);
+  position: fixed;
+  left: calc(15vw);
+  top: 30vh;
+  z-index: -2;
+}
+
+.row {
+  transform: rotateZ(90deg) translateX(-55px) translateY(280px);
+  height: 150px;
+  position: absolute;
+  left: calc(5vw);
+  top: 0;
+}
+
+.block {
+  height: 30vh;
+  width: 10px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(2, 2, 30, 100) 80%,
+    rgba(2, 2, 30, 20) 90%,
+    rgba(2, 2, 30, 0) 100%
+  );
+  transform-origin: center;
+  position: absolute;
+  left: calc(15vw);
+  top: 0vh;
+  z-index: -1;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  background-color: #ab9bee;
+  transform-origin: center;
+  position: absolute;
+  border-radius: 5px;
+  transform: translate(-50%);
+}
+
+.to-extend {
+  position: fixed;
+  top: 0vh;
+  height: 30vh;
+  background-image: linear-gradient(to bottom, #02021e 80%, #ab9bee 0%);
+}
+
+// HEADERS 3D EFFECTS
+
+.threed-title {
+  perspective: 100;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg) translateY(-100px);
+  transition: transform 2s;
+  z-index: 7;
+}
+
+.rotate180x {
+  transform: rotateX(0deg);
+}
+
+.black-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+
+  opacity: 100%;
+  transition: opacity 1s ease;
+  z-index: 6;
+}
+
+// Typing Cursor effect
+.input-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 40px;
+  background-color: white;
+  margin-left: 8px;
+
+  animation: blink 0.6s linear infinite alternate;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.title {
+  text-align: center;
+  font-family: "Roboto Mono", Courier, monospace;
+
+  font-weight: 400;
+  font-size: 7rem;
+
+  padding-top: 10rem;
+}
+
+.title-description {
+  font-size: 2rem;
+  font-weight: 200;
+  background-color: black;
+  border: 1.3px solid #17a02a;
+  opacity: 90%;
+  border-radius: 3px;
+
+  padding: 1rem;
+}
+
+// // SCROLL SNAP
+// .scroll-container {
+//   scroll-snap-type: y mandatory;
+//   overflow-y: scroll;
+//   overflow-x: hidden;
+//   height: 300vh;
+// }
+
+// .scroll-child {
+//   scroll-snap-align: start;
+//   // height: 100vh;
+// }
+
+// INTRO SECTION
+.intro-section {
+  height: 100vh;
+  background-image: linear-gradient(to bottom, #02021e, #040404);
+  // background-color: #02021e;
+
+  text-align: center;
+  font-family: "Roboto Mono", Courier, monospace;
+
+  font-weight: 200;
+  z-index: 1;
+
+  position: relative;
+}
+
+.hide {
+  height: 0vh;
+  display: none;
+}
+
+.title-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+}
+
+.intro-title-container {
+  display: block;
+}
+
+.scroll-note {
+  width: 200px;
+  margin: 0 auto;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// INTRO SECTION - INTERACTIVE BACKGROUND
+
+.mouse-hover {
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  border: 3px solid whitesmoke;
+
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 0%;
+  background-color: red;
+  z-index: 10;
+}
+
+.intro-bubbles-container {
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+}
+
+.bubble {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+
+  background-image: linear-gradient(to bottom right, #ab9bee, #02021e);
+
+  position: inherit;
+  top: 200px;
+  left: 100px;
+  opacity: 0%;
+  z-index: 2;
+
+  transition: opacity 1s ease-in;
+
+  // ANIMATION OF BUBBLE DELAY
+  // transition: top linear;
+  // transition: left ease-out;
+}
+
+.bubble1 {
+  height: 40px;
+  width: 40px;
+  background-image: linear-gradient(to bottom left, #c0b4f3, #0b0b5a);
+
+  top: 60vh;
+  left: 70vw;
+}
+
+.bubble2 {
+  height: 75px;
+  width: 75px;
+  background-image: linear-gradient(245deg, #8fc8e9, #6577c7);
+
+  top: 10vh;
+  left: 35vw;
+}
+
+.bubble3 {
+  height: 90px;
+  width: 90px;
+  background-image: linear-gradient(225deg, #e8ecfa, #3c3cff 80%);
+
+  top: 75vh;
+  left: 55vw;
+}
+
+.bubble5 {
+  height: 120px;
+  width: 120px;
+  border-radius: 100px;
+  background-image: linear-gradient(195deg, #e8ecfa, #5ac3ff 80%);
+
+  top: 25vh;
+  left: 75vw;
+
+  // &:hover {
+  //   background-image: linear-gradient(225deg, #e8ecfa, #3c3cff 80%);
+  // }
+}
+
+// THREE SECTION - GALAXY INTERACTIVITY
+.three-section {
+  position: relative;
+  height: 100vh;
+  // background-color: white;
+  // z-index: 100;
+}
+
+.three-title {
+  color: #10db2b;
+}
+
+.three-description {
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Roboto Mono", Courier, monospace;
+  max-width: 600px;
+  font-weight: 200;
+  font-size: 2rem;
+  background-color: #040404;
+  padding: 1rem;
+}
+
+// FRONT PAGE SECTION
+.frontpage-section {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 800px;
+  height: 100vh;
+  font-family: "Roboto Mono", Courier, monospace;
+
+  position: relative;
+
+  font-weight: 200;
+  z-index: 6;
+}
+
+.frontpage-title {
+  position: absolute;
+  top: 25%;
+}
+
+.frontpage-button {
+  background-color: #e5e5e5;
+  font-family: "Roboto Mono", sans-serif;
+  font-size: 2rem;
+  border: none;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+}
+
+// RECENT WORKS SECTION
+.recentworks-section {
+  height: 100vh;
+  background-color: chocolate;
+}
+
+// For chrome, safari
+// .scrolling-flex::-webkit-scrollbar {
+//   display: none;
+// }
+
+.scrolling-flex {
+  display: flex;
+
+  // Adding the vertical scroll-able portion
+  // // overflow-x: scroll;
+  // scrollbar-width: none;
+  // -ms-overflow-style: none;
+  // -webkit-overflow-scrolling: touch;
+
+  &_item {
+    min-height: 400px;
+    min-width: 400px;
+    background-color: brown;
+    margin: 4rem;
+
+    &_img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.extended {
+  min-width: 550px;
+  height: 400px;
+}
+
+// ABOUTME SECTION
+.aboutme-section {
+  height: 100vh;
+  background-color: violet;
+}
+
+// All
+.centeredtitle {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.spine-position {
+  position: relative;
+}
+
+// cover that covers the screen when user is using a screen that is too small
+.cover {
+  background-color: #040404;
+  height: 100vh;
+  width: 100vw;
+  display: none;
+
+  h2 {
+    font-family: "Roboto Mono", sans-serif;
+    font-weight: 200;
+    font-size: 2rem;
+    text-align: center;
+    margin: auto;
+    max-width: 80%;
+  }
+}
+
+// .design-button

@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Sofia Pro", sans-serif;
+  font-size: 3rem;
+  color: #e5e5e5;
+  background-color: #02021e;
+  // min-height: 100vh;
+  // overflow-y: hidden;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 95%;
+  margin: 2rem 5rem;
+  z-index: 8;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+h2 {
+  color: #ab9bee;
+  font-size: 3rem;
+  font-weight: 300;
+}
