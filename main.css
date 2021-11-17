@@ -18,6 +18,10 @@ body {
   color: #e5e5e5;
   background-color: #02021e;
   overflow-x: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 nav {
@@ -310,6 +314,17 @@ h2 {
   color: #10db2b;
 }
 
+.three-description {
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Roboto Mono", Courier, monospace;
+  max-width: 600px;
+  font-weight: 200;
+  font-size: 2rem;
+  background-color: #040404;
+  padding: 1rem;
+}
+
 .frontpage-section {
   margin: 0 auto;
   text-align: center;
@@ -378,6 +393,22 @@ h2 {
   position: relative;
 }
 
+.cover {
+  background-color: #040404;
+  height: 100vh;
+  width: 100vw;
+  display: none;
+}
+
+.cover h2 {
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 200;
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+  max-width: 80%;
+}
+
 .spacestation-hover {
   cursor: pointer;
 }
@@ -393,7 +424,7 @@ h2 {
   left: 0px;
   outline: none;
   z-index: -2;
-  background: url(375c7f6372e0f143f293.png);
+  background: url(../hubble_space_edited.png);
   background-size: contain;
 }
 
@@ -629,6 +660,18 @@ h2 {
 .button-hover {
   background-color: violet;
 }
-/*# sourceMappingURL=main.css.map */
 
-/*# sourceMappingURL=main.css.map*/
+@media only screen and (max-width: 700px) {
+  body {
+    overflow: hidden;
+  }
+  .cover {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .three-section {
+    display: none;
+  }
+}
+/*# sourceMappingURL=main.css.map */
