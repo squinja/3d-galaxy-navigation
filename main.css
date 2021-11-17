@@ -409,6 +409,65 @@ h2 {
   max-width: 80%;
 }
 
+.button-container {
+  height: 150px;
+  width: 200px;
+  position: relative;
+}
+
+.design-button {
+  opacity: 0%;
+  position: absolute;
+}
+
+.games-button {
+  opacity: 0%;
+  position: absolute;
+}
+
+.web-button {
+  opacity: 0%;
+  position: absolute;
+}
+
+.book-button {
+  opacity: 0%;
+  position: absolute;
+}
+
+.selection-button {
+  background-color: black;
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 500;
+  color: #10db2b;
+  border: 1.3px solid #10db2b;
+  border-radius: 3px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  opacity: 0%;
+  -webkit-transition: opacity 1s ease-in;
+  transition: opacity 1s ease-in;
+  -webkit-transition: background-color 0.4s ease-in;
+  transition: background-color 0.4s ease-in;
+  z-index: 6;
+}
+
+.selection-button a {
+  text-decoration: none;
+  color: #10db2b;
+}
+
+.selection-button:hover {
+  background-color: #2e2e2e;
+  -webkit-transition: background-color 0.4s ease-in;
+  transition: background-color 0.4s ease-in;
+}
+
+.selection-button:visited, .selection-button:link {
+  text-decoration: none;
+}
+
 .spacestation-hover {
   cursor: pointer;
 }
