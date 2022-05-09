@@ -26,14 +26,7 @@ module.exports = {
       template: path.resolve(__dirname, "../src/index.html"),
       minify: true,
     }),
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, "../src/games.html"),
-    //   filename: "games.html",
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, "../src/navigation_three.html"),
-    //   filename: "navigation_three.html",
-    // }),
+
     new MiniCSSExtractPlugin(),
   ],
   module: {
