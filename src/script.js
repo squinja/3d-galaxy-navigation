@@ -1,7 +1,6 @@
 import "./styles/main.css";
 import "./assets/images/logo.png";
 import "./cat.jpg";
-import "./stars.jpg";
 import "./cloud.png";
 
 import * as VANILLA from "./script/vanillascript.js";
@@ -11,20 +10,8 @@ import * as THREE from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 
-import { BloomPass } from "three/examples/jsm/postprocessing/BloomPass";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { CopyShader } from "three/examples/jsm/shaders/CopyShader";
-// import { EffectPass } from "./EffectPass";
-
-import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass";
-// This is a SEPARATE 3js library
-import {
-  BloomEffect,
-  BlendFunction,
-  KernelSize,
-  // EffectPass,
-  TextureEffect,
-} from "postprocessing";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Stats from "stats.js";
@@ -50,8 +37,7 @@ function createStats() {
 
 // Texture loader
 const loader = new THREE.TextureLoader();
-const star = loader.load("star.png");
-const cloud = loader.load("cloud.png");
+// const star = loader.load("star.png");
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -350,11 +336,8 @@ window.addEventListener("mouseup", function (e) {
   const setGalaxyInterval = setInterval(() => {
     if (lastSpinVelocity > 0) {
       lastSpinVelocity -= lastSpinVelocity / 5;
-      // console.log(lastSpinVelocity, "spin duration = ", spinDuration);
-      // lastSpinVelocity -= 0.0003;
     } else {
       lastSpinVelocity += 0.0006;
-      // console.log(lastSpinVelocity, "spin duration = ", spinDuration);
     }
     spiralGalaxy.rotation.z -= lastSpinVelocity;
     spiralArmGalaxy.rotation.y -= lastSpinVelocity;
@@ -441,7 +424,7 @@ let oldIntersects = null;
 let planetHovered = false;
 let everHovered = false;
 let intersects = [];
-const planetButton = document.querySelector(".planet-button");
+// const planetButton = document.querySelector(".planet-button");
 
 function render() {
   // Galaxy spin functionality
@@ -479,7 +462,7 @@ function render() {
 
     // Display planet detection
     if (planetHovered && timeOutComplete) {
-      planetRemover();
+      planetRemover(intersects[0]);
       planetHovered = false;
     } else {
       planetDetector(intersects[0]);
@@ -530,16 +513,21 @@ function render() {
 let executed = false;
 let timeOutComplete = false;
 
-let planetImage = document.querySelector(".planet-image");
+let planetImage = "";
+let planetButtonName = "";
 
-function planetRemover() {
-  document.querySelector(".planet-title").innerHTML = "";
+function planetRemover(planetName) {
+  document.querySelector(planetImage).style.display = "none";
+  document.querySelector(planetButtonName).style.display = "none";
+  document.querySelector(planetButtonName).classList.remove("button-flash");
+  document.querySelector(".planet-title").classList.remove("title-flash");
   document.querySelector(".location").innerHTML = "Approaching:";
   document.querySelector(".coords").innerHTML = "Coordinates:";
   document.querySelector(".features").innerHTML = "Features:";
-  document.querySelector(".planet-button").style.opacity = "0%";
-  planetButton.style.opacity = "0%";
-  planetButton.classList.remove("button-flash");
+
+  planetButtonName = "";
+  planetImage = "";
+
   executed = false;
   timeOutComplete = false;
 }
@@ -558,25 +546,63 @@ const planetDetector = function (planetName) {
         return "Published Book on Game Development";
     }
   };
+
+  const planetImageChooser = () => {
+    switch (planetName.object.name) {
+      case "GAMES System":
+        planetImage = ".games-image";
+        break;
+      case "WEB System":
+        planetImage = ".web-image";
+        break;
+      case "DESIGN System":
+        planetImage = ".design-image";
+        break;
+      case "BOOK System":
+        planetImage = ".book-image";
+        break;
+    }
+  };
+
+  const planetButtonChooser = () => {
+    switch (planetName.object.name) {
+      case "GAMES System":
+        planetButtonName = ".games-button";
+        break;
+      case "WEB System":
+        planetButtonName = ".web-button";
+        break;
+      case "DESIGN System":
+        planetButtonName = ".design-button";
+        break;
+      case "BOOK System":
+        planetButtonName = ".book-button";
+        break;
+    }
+  };
+
+  planetButtonChooser(planetName);
+  planetImageChooser(planetName);
+
   if (!executed) {
     executed = true;
     document.querySelector(".planet").classList.add("increase-zindex");
-    VANILLA.typePhrase("Planet Detected", ".planet-title");
     document.querySelector(".location").append(planetName.object.name);
+    document.querySelector(".planet-title").classList.add("title-flash");
     document
       .querySelector(".coords")
       .append(
-        `\nX: ${planetName.point.x}\nY: ${planetName.point.y}\nZ: ${planetName.point.z}`
+        `\nX: ${planetName.point.x.toFixed(2)}\nY: ${planetName.point.y.toFixed(
+          2
+        )}\nZ: ${planetName.point.z.toFixed(2)}`
       );
     document.querySelector(".features").append(planetDescriptionChooser());
     document.querySelector(".planet-image").style.opacity = "100%";
-    setTimeout(() => {
-      planetButton.style.opacity = "100%";
-      planetButton.classList.add("button-flash");
-    }, 1500);
-    setTimeout(() => {
-      timeOutComplete = true;
-    }, 1500);
+
+    document.querySelector(planetImage).style.display = "block";
+    document.querySelector(planetButtonName).style.display = "block";
+
+    timeOutComplete = true;
   }
 };
 
@@ -593,12 +619,12 @@ const animateGalaxyScroll = () => {
 
 window.addEventListener("scroll", animateGalaxyScroll);
 // TESTING: shows GPU usage
-stats = createStats();
-stats.showPanel(0);
-document.body.appendChild(stats.domElement);
+// stats = createStats();
+// stats.showPanel(0);
+// document.body.appendChild(stats.domElement);
 
 const tick = () => {
-  stats.update();
+  // stats.update();
 
   render();
   // Render
@@ -611,145 +637,3 @@ const tick = () => {
 };
 
 tick();
-
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-// OLD STUFF BELOW
-
-// Debug
-// const gui = new dat.GUI();
-// const galaxyArmFolder = gui.addFolder("Galaxy");
-// galaxyArmFolder.add(pivot.rotation, "x", 0, Math.PI * 4);
-// galaxyArmFolder.add(spiralArmGalaxy.rotation, "y", 0, Math.PI * 2);
-// galaxyArmFolder.add(spiralArmGalaxy.rotation, "z", 0, Math.PI * 2);
-// galaxyArmFolder.open();
-
-// OLD STUFF
-
-// // Objects
-// const torusGeometry = new THREE.TorusGeometry(150, 20, 10, 150);
-
-// const particlesGeometry = new THREE.BufferGeometry();
-// // sets how many particles are in the scene
-// const particlesCount = 5000;
-
-// const posArray = new Float32Array(particlesCount * 3);
-// // xyz, xyz, xyz, xyz
-
-// for (let i = 0; i < particlesCount * 3; i++) {
-//   // Not centered:
-//   // posArray[i] = Math.random();
-
-//   // To center:
-//   // posArray[i] = Math.random() - 0.5;
-
-//   // To enlarge to take up the whole canvas:
-//   posArray[i] = (Math.random() - 0.5) * 5;
-// }
-
-// particlesGeometry.setAttribute(
-//   "position",
-//   new THREE.BufferAttribute(posArray, 3)
-// );
-
-// Takes pos array from for loop, takes each math.random() value and sets the particle geometry value to all 5000 particles
-
-// Materials
-
-// const material = new THREE.PointsMaterial({
-//   transparent: true,
-//   size: Math.random(),
-// });
-
-// material.color = new THREE.Color(0xff0000);
-
-// Particles Material
-// const particlesMaterial = new THREE.PointsMaterial({
-//   size: 0.035,
-//   map: star,
-//   transparent: true,
-//   color: "green",
-//   blending: THREE.AdditiveBlending,
-// });
-
-// Mesh
-// const sphere = new THREE.Points(torusGeometry, material);
-// sphere.rotation.x = 1;
-// sphere.rotation.z = 1;
-// // sphere.rotation.y = 1;
-// // scene.add(sphere);
-// scene.add(light);
-
-// Particle system mesh
-// const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-// scene.add(sphere, particlesMesh);
-
-// Portfolio points of interest
-// Space stations
-// distanceArm -= 150;
-// spaceStationOne = new THREE.Vector3(
-//   distanceArm * Math.sin(thetaArm) * Math.cos(phiArm),
-//   distanceArm * Math.sin(thetaArm) * Math.sin(phiArm),
-//   distanceArm * Math.cos(thetaArm)
-// );
-
-// spaceStationPoints.push(spaceStationOne);
-
-// spaceStationGeometry = new THREE.BufferGeometry().setFromPoints(
-//   spaceStationPoints
-// );
-
-// const spaceStation = new THREE.Points(
-//   spaceStationGeometry,
-//   new THREE.PointsMaterial({ color: 0xffff00, size: 30 })
-// );
-// spaceStation.rotation.x = 2.6;
-// scene.add(spaceStation);
-
-// To create following HTML element in render()
-
-// const elemButton = document.querySelector(".spacestation__button");
-const tempVector = new THREE.Vector3();
-
-// previous HTML based planet info card handler \/
-// spaceSphereGames.updateWorldMatrix(true, false);
-// spaceSphereGames.getWorldPosition(tempVector);
-// tempVector.project(camera);
-// const sphereX = (tempVector.x * 0.5 + 0.5) * canvas.clientWidth;
-// const sphereY =
-//   (tempVector.y * -0.5 + 0.38) * canvas.clientHeight +
-//   100000 / (canvas.clientWidth * 1.5);
-
-// can include a ternary here for client width/height ratio
-// 1:1 would mean spherex/y can keep the above formula for calculation
-// greater than 1:1 (1:2 +) would mean it should be reverted to keep the ratio
-// elem.style.transform = `translate(-50%,0%) translate(${sphereX}px,${sphereY}px)`;
-
-// Previous set time outs that caused glitching with letter input - removed and replaced with no set timeouts
-// setTimeout(VANILLA.typePhrase, 2000, planetName.object.name, ".location");
-// setTimeout(
-//   VANILLA.typePhrase,
-//   4000,
-//   `\nX: ${planetName.point.x}\nY: ${planetName.point.y}\nZ: ${planetName.point.z}`,
-//   ".coords"
-// );
-// setTimeout(
-//   VANILLA.typePhrase,
-//   8000,
-//   planetDescriptionChooser(),
-//   ".features"
-// );
-// setTimeout(() => {
-//   planetImage.style.opacity = "100%";
-// }, 10000);
-
-// Fog effect
-// change bg of fog here
-// scene.fog = new THREE.FogExp2(0x02021e, 0.002);
-// renderer.setClearColor(scene.fog.color);
-// document.body.appendChild(renderer.domElement);
