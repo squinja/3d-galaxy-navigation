@@ -15,7 +15,7 @@
   outline: none;
   z-index: -2;
 
-  background: url(../hubble_space_edited.png);
+  background: url(../assets/three_images/hubble_space_edited.png);
   background-size: contain;
 }
 
@@ -34,8 +34,8 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  position: absolute;
   z-index: 3;
 
   transition: opacity 0.3s ease-in;
@@ -66,11 +66,27 @@
 }
 
 .planet-image {
-  opacity: 0%;
-  transition: opacity 1s ease-in;
+  border: 2px solid #10db2b;
+  border-radius: 3px;
 }
 
-.planet-button {
+.web-image {
+  display: none;
+}
+
+.games-image {
+  display: none;
+}
+
+.book-image {
+  display: none;
+}
+
+.design-image {
+  display: none;
+}
+
+.selection-button {
   background-color: black;
   font-family: "Roboto Mono", sans-serif;
   font-weight: 500;
@@ -80,7 +96,6 @@
   padding: 1rem;
   margin-top: 1rem;
   text-decoration: none;
-  opacity: 0%;
   transition: opacity 1s ease-in;
   transition: background-color 0.4s ease-in;
 
@@ -100,6 +115,22 @@
   &:visited {
     text-decoration: none;
   }
+}
+
+.design-button {
+  display: none;
+}
+
+.games-button {
+  display: none;
+}
+
+.book-button {
+  display: none;
+}
+
+.web-button {
+  display: none;
 }
 
 .button-flash {
@@ -127,6 +158,34 @@
   }
   100% {
     background-color: black;
+  }
+}
+
+.title-flash {
+  animation: titleFlash 2.5s linear 0s 1;
+}
+
+@keyframes titleFlash {
+  0% {
+    color: #10db2b;
+  }
+  15% {
+    color: black;
+  }
+  30% {
+    color: #10db2b;
+  }
+  45% {
+    color: black;
+  }
+  60% {
+    color: #10db2b;
+  }
+  75% {
+    color: black;
+  }
+  100% {
+    color: #10db2b;
   }
 }
 
