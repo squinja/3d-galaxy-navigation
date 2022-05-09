@@ -6,7 +6,7 @@ NOTE.
 
 - Please view the page on a screen that is wider than 750px.
 
-Known Issues: The page-travel buttons are still a bit glitchy, please bear with me.
+Known Issues: When two space stations/points of interest generate over eachother (not often), raycasting goes through both. This causes the identified class objects to be 'doubled up' so that two buttons appear on the left UI. 
 
 
 Some features I'm planning on adding soon:
